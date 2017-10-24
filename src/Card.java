@@ -18,11 +18,12 @@ public class Card implements Comparable<Card>
 	{
 		rank = numRank();
 		suit = suitRank();
+		shortHand = rank + suit;
 	}
 
 	private String suitRank()
 	{
-		suit.toLowerCase();
+		suit = suit.toLowerCase();
 
 		String[] faces = {"j", "q", "k", "a", "d", "h", "s", "c"};
 		String[] faceRank = {"jack", "queen", "king", "ace", "diamonds", "hearts", "spades", "clubs"};
@@ -31,6 +32,7 @@ public class Card implements Comparable<Card>
 		{
 			return "Unknown";
 		}
+
 		for (int i = 0; i < faces.length ; i++)
 		{
 			if(suit.equals(faces[i]))
@@ -44,6 +46,8 @@ public class Card implements Comparable<Card>
 
 	private String numRank()
 	{
+		rank = rank.toLowerCase();
+
 		String[] nums = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 		if(rank != "2" && rank != "3" && rank != "4" && rank != "5" && rank != "6" && rank != "7" && rank != "8" &&
 				rank != "9" && rank != "10")
@@ -81,7 +85,8 @@ public class Card implements Comparable<Card>
 	 */
 	public int compareTo(Card other)
 	{
-		
+		Card one = new Card("");
+		one = other;
 	}
 	
 	/**
