@@ -16,46 +16,34 @@ public class Card implements Comparable<Card>
 	 */
 	public Card(String card)
 	{
-		rank = numRank();
-		suit = suitRank();
-		shortHand = rank + suit;
-	}
-
-	private String suitRank()
-	{
-		suit = suit.toLowerCase();
-
+		String[] nums = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 		String[] faces = {"j", "q", "k", "a", "d", "h", "s", "c"};
 		String[] faceRank = {"jack", "queen", "king", "ace", "diamonds", "hearts", "spades", "clubs"};
 
-		if(suit != "j" && suit != "q" && suit != "k" && suit != "a" && suit != "d" && suit != "h" && suit != "s" && suit != "c")
+		for (int i = 0; i < nums.length; i++)
 		{
-			return "Unknown";
-		}
-
-		for (int i = 0; i < faces.length ; i++)
-		{
-			if(suit.equals(faces[i]))
+			if(card.contains(nums[i]))
 			{
-				suit = faceRank[i];
+				rank = nums[i];
+			}
+			else
+			{
+				rank = "Unknown";
 			}
 		}
 
-		return suit;
-	}
-
-	private String numRank()
-	{
-		rank = rank.toLowerCase();
-
-		String[] nums = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
-		if(rank != "2" && rank != "3" && rank != "4" && rank != "5" && rank != "6" && rank != "7" && rank != "8" &&
-				rank != "9" && rank != "10")
+		for (int i = 0; i < faces.length; i++)
 		{
-			return "Unknown";
-		}
+			if(card.contains(faces[i]))
+			{
+				suit = faceRank[i];
+			}
+			else
+			{
+				suit = "Unknown";
+			}
 
-		return rank;
+		}
 	}
 	
 	public String getRank()
