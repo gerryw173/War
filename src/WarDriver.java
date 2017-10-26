@@ -4,10 +4,8 @@ public class WarDriver
 {
 	public static void main(String[] args) 
 	{
-		/*
-		//War game = new War();
-		
-		War game = warTest1();
+		War game = new War();
+		//War game = warTest1();
 		//War game = warTest2();
 		//War game = warTest3();
 		//War game = warTest4();
@@ -20,11 +18,6 @@ public class WarDriver
 			System.out.println("Winner: " + game.battle());
 			System.out.println("\n" + game);
 		}
-		*/
-
-		Card kappa = new Card("8J");
-		kappa.getRank();
-		kappa.getSuit();
 	}
 	
 	private static War warTest1()

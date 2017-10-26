@@ -16,33 +16,44 @@ public class Card implements Comparable<Card>
 	 */
 	public Card(String card)
 	{
-		String[] nums = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
-		String[] faces = {"j", "q", "k", "a", "d", "h", "s", "c"};
-		String[] faceRank = {"jack", "queen", "king", "ace", "diamonds", "hearts", "spades", "clubs"};
+		shortHand = card;
+		card = card.toLowerCase();
 
-		for (int i = 0; i < nums.length; i++)
+		String ranks = "234567891jqka";
+
+		if(card.charAt(0) == '1')
 		{
-			if(card.contains(nums[i]))
-			{
-				rank = nums[i];
-			}
-			else
-			{
-				rank = "Unknown";
-			}
+			rank = "8";
+		}
+		else if(ranks.contains(card.charAt(0) + ""))
+		{
+			rank = ranks.indexOf(card.charAt(0) + "") + "";
+		}
+		else
+		{
+			rank = "Unknown";
 		}
 
-		for (int i = 0; i < faces.length; i++)
-		{
-			if(card.contains(faces[i]))
-			{
-				suit = faceRank[i];
-			}
-			else
-			{
-				suit = "Unknown";
-			}
 
+		if(card.contains("d"))
+		{
+			suit = "Diamond";
+		}
+		else if(card.contains("h"))
+		{
+			suit = "Hearts";
+		}
+		else if(card.contains("s"))
+		{
+			suit = "Spades";
+		}
+		else if(card.contains("c"))
+		{
+			suit = "Clubs";
+		}
+		else
+		{
+			suit = "Unknown";
 		}
 	}
 	
@@ -73,16 +84,48 @@ public class Card implements Comparable<Card>
 	 */
 	public int compareTo(Card other)
 	{
-		Card one = new Card("");
-		one = other;
+		//converts strings into integers
+		int rank1 = Integer.parseInt(this.rank);
+		int rank2 = Integer.parseInt(other.getRank());
+		return rank1 - rank2;
 	}
 	
 	/**
 	 * Returns the long notation of this Card object.
-	 *         "Unknown" if the rank or suit is not known.
+	 * "Unknown" if the rank or suit is not known.
 	 */
 	public String toString()
 	{
+		if(shortHand.contains("Unknown"))
+		{
+			return "Unknown";
+		}
+		String longRank = ""; // long notation of rank
+		String longSuit = ""; // long notation of suit
 
+		String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k","a"};
+		String[] longRanks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+		String[] suits = {"d", "h", "s", "c"};
+		String[] longSuits = {"Diamonds", "Hearts", "Spades", "Clubs"};
+
+		for(int i = 0; i < ranks.length; i++)
+		{
+			if(rank == ranks[i])
+			{
+				longRank = longRanks[i];
+				break;
+			}
+		}
+
+		for(int i = 0; i < suits.length; i++)
+		{
+			if(suit == suits[i])
+			{
+				longSuit = longSuits[i];
+				break;
+			}
+		}
+
+		return longRank + " of " + longSuit;
 	}
 }
